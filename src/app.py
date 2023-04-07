@@ -71,11 +71,6 @@ def index():
     print(f"combined_street_info importance: {street_name_importance:.4f}")
     print(f"use_code importance: {use_code_importance:.4f}")
 
-    if street_name_importance > use_code_importance:
-        print("In the filtered dataset, combined_street_info has higher importance than use_code.")
-    else:
-        print("In the filtered dataset, use_code still has higher importance than StreetName.")
-
     return render_template("index.html", plot_url=plot_url)
 
 
