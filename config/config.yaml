@@ -1,0 +1,3 @@
+path: "../data/assessment-data.csv"
+nrows: 100000
+plot_title: 'Most Important Feature vs Assessment'
