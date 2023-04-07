@@ -23,9 +23,9 @@ Address also can be further trained and weighted to predict a series of flats or
 assessment would be highly correlated, alongside other patterns, whilst use_code is a quick moderately accurate result, 
 but has little ability to scale.
 
-Result on full dataset:
-combined_street_info importance: 0.4399
-use_code importance: 0.2501
+Result on full dataset:  
+- combined_street_info importance: 0.4399  
+- use_code importance: 0.2501
 
 ## Steps
 1. Load the dataset
