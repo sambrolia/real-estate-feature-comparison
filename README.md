@@ -75,7 +75,7 @@ You can also run the analysis using Docker.
 `docker build -t task-2 .`  
 
 2. Run the Docker container:  
-`docker run -it --rm task-2`
+`docker run -it -p 3001:3001 --rm task-2`
 
 ## Configuration
 You can change the plot title and some other details by modifying the config/config.yaml file. Update the plot_title value to change the plot title.
