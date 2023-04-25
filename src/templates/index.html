@@ -1,12 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Most Important Feature Visualization</title>
-</head>
-<body>
-    <h1>Most Important Feature vs Assessment</h1>
-    <img src="data:image/png;base64,{{plot_url}}" alt="plot">
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feature Comparison</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl7/1wxSQLJf6zl7KDoDfMhq5WVoF1MzKM3sXne4E9"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background-color: #f2f2f2;
+      }
+      .card {
+        height: 50%;
+        border: 20px;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+        padding: 20px;
+      }
+      .card:hover {
+        transform: translateY(-0.5rem);
+      }
+      .card-img-top {
+        height: 30rem;
+        object-fit: cover;
+      }
+      .card-title {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin: 0.5rem 0 0;
+      }
+      .card-text {
+        font-size: 1rem;
+        margin: 0;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center my-5">Feature Comparison</h1>
+      <div class="row">
+        {% for model_name, error, image_path in models %}
+        <div class="card">
+            <img src="{{ url_for('static', filename=image_path) }}" alt="{{ model_name }} Feature Importances" class="card-img-top" />
+            <div class="card-body">
+                <h2 class="card-title">{{ model_name }}</h2>
+                <p class="card-text">Mean Absolute Error: {{ error }}</p>
+            </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
 </html>

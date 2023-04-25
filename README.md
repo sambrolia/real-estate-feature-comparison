@@ -2,7 +2,7 @@
 
 This project analyzes the DC Real Property Assessment Data to find the most important feature with respect to the 2014 assessment, and visualize the feature
 
-## Approach
+## Approach - see note below
 
 On first glance at the dataset it was clear that for some entries the address would provide quite accurate predictions 
 where entries existed for similar addresses. However, the address field was not formatted in a regular way.
@@ -26,6 +26,11 @@ but has little ability to scale.
 Result on full dataset:  
 - combined_street_info importance: 0.4399  
 - use_code importance: 0.2501
+
+## NOTE: 
+After finding and fixing some bugs in the code it seems that the first 4 digits of the ssl are a better feature than the combined street address I had created.  
+
+I further validated this by running a gradiant boosting model to validate the findings of the random forest.  
 
 ## Steps
 1. Load the dataset
