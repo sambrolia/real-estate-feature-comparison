@@ -22,31 +22,28 @@ def index():
     x_train, x_test, y_train, y_test = split(df, target_col)
 
     # Random forest model
-    model = train_random_forest(x_train, y_train)
-    mean_absolute_error = test_random_forest(model, x_test, y_test)
-    print("Mean Absolute Error: ", mean_absolute_error)
-    top_features = top_features_random_forest(
-        model, x_train.columns.tolist(), config['top_features'])
-    print("Top " + str(config['top_features']) + " important features:", top_features)
-    rf_plot_url = plot_top_features(top_features, config['plot_title'], 'forest')
+    rf_model = train_random_forest(x_train, y_train)
+    rf_mae = test_random_forest(rf_model, x_test, y_test)
+    print("Mean Absolute Error: ", rf_mae)
+    rf_top_features = top_features_random_forest(
+        rf_model, x_train.columns.tolist(), config['top_features'])
+    print("Top " + str(config['top_features']) + " important features (Random Forest):")
+    print(rf_top_features)
+    rf_plot_url = plot_top_features(rf_top_features, config['plot_title'], 'forest')
 
     # Gradient Boosting model
     gb_model = train_gradient_boosting(x_train, y_train)
     gb_mae = test_gradient_boosting(gb_model, x_test, y_test)
     print("Gradient Boosting Mean Absolute Error: ", gb_mae)
-    gb_top_features = top_features_gradient_boosting(gb_model, x_train.columns.tolist(), 3)
-    print("Top 3 important features (Gradient Boosting):")
+    gb_top_features = top_features_gradient_boosting(gb_model, x_train.columns.tolist(), config['top_features'])
+    print("Top " + str(config['top_features']) + " important features (Gradient Boosting):")
     print(gb_top_features)
     gb_plot_url = plot_top_features(gb_top_features, config['plot_title'], 'gradient')
-
-
-    # Plot the most important features
-    #plot_url = plot_top_features(top_features, config['plot_title'])
 
     return render_template(
         "index.html",
         models=[
-            ("Random Forest", mean_absolute_error, rf_plot_url),
+            ("Random Forest", rf_mae, rf_plot_url),
             ("Gradient Boosting", gb_mae, gb_plot_url)
         ]
     )
