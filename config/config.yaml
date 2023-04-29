@@ -1,3 +1,5 @@
-path: "../data/assessment-data.csv"
-nrows: 100000
-plot_title: 'Most Important Feature vs Assessment'
+path: 'data/assessment-data.csv'
+nrows: 200000
+target_col: '2014_assessment'
+top_features: 3
+plot_title: 'Top 3 important features'
